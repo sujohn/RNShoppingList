@@ -4,14 +4,15 @@ import Header from '../components/Header';
 import ListItem from '../components/ListItem';
 import AddItem from '../components/AddItem';
 
+
+
 const ShoppingListScreen = () => {
 
-    const [items, setItems] = useState([
-        {id: 1, text: 'Milk'},
-        {id: 2, text: 'Eggs'},
-        {id: 3, text: 'Bread'},
-        {id: 4, text: 'Juice'},
-    ]);
+    const [items, setItems] = useState([]);
+
+    function uuid() {
+        return Math.random().toString(36).substring(2) + Date.now().toString(36);
+    }
 
     const deleteItem = (id) => {
         setItems(prevItems => {
@@ -24,7 +25,7 @@ const ShoppingListScreen = () => {
             Alert.alert('Error', 'Please enter and item', [{text: 'Ok'}]);
         } else {
             setItems(prevItems => {
-                return [{id: 0, text}, ...prevItems];
+                return [{id: uuid(), text}, ...prevItems];
             });
         }
         
